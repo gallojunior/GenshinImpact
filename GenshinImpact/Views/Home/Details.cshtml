@@ -1,0 +1,75 @@
+@model Character
+@{
+    ViewData["Title"] = "Pokemon";
+}
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-dark text-center">@Model.Name</h1>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-lg-3 p-0 pe-5 text-center">
+                <img class="img-fluid cursor-pointer" src="@Model.CardPicture" alt="@Model.Name">
+                <img src="@string.Concat("/img/", Model.Quality, ".png")"
+                    width="@(Model.Quality == 5 ? "200px" : "175px")">
+            </div>
+            <div class="col-lg-9 fs-5 mt-4">
+                <table class="table">
+                    <tr>
+                        <td class="fw-bold w-25">Descrição:</td>
+                        <td>@Model.Description</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Região:</td>
+                        <td>@Model.Region</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Visão:</td>
+                        <td>@Model.Vision</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Arma:</td>
+                        <td>@Model.Weapon</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Aniversário:</td>
+                        <td>@Model.Birthday</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Constelação:</td>
+                        <td>@Model.Constelation</td>
+                    </tr>
+
+                    <tr>
+                        <td class="fw-bold">Prato Especial:</td>
+                        <td>@Model.SpecialDish</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="@(Model.Affiliations.Count == 0 ? 1 : Model.Affiliations.Count)" class="fw-bold">
+                            Filiações:</td>
+                        <td class="w-100">@(Model.Affiliations.Count > 0 ? Model.Affiliations[0] : "Nenhuma")</td>
+                    </tr>
+                    @for (int i = 1; i < Model.Affiliations.Count; i++)
+                    {
+                        <tr>
+                            <td>@Model.Affiliations[i]</td>
+                        </tr>
+                    }
+                    <tr>
+                        <td rowspan="@(Model.Titles.Count == 0 ? 1 : Model.Titles.Count)" class="fw-bold">Títulos:</td>
+                        <td class="w-100">@(Model.Titles.Count > 0 ? Model.Titles[0] : "Nenhum")</td>
+                    </tr>
+                    @for (int i = 1; i < Model.Titles.Count; i++)
+                    {
+                        <tr>
+                            <td>@Model.Titles[i]</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

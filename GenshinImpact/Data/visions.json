@@ -1,0 +1,51 @@
+[
+    {
+        "Name": "Anemo",
+        "Color" : "#74C2A8",
+        "Icon": "\\img\\visions\\anemo.png",
+        "Arconte": "Barbatos",
+        "Region": "Mondstadt"
+    },
+    {
+        "Name": "Cryo",
+        "Color" : "#9FD6E3",
+        "Icon": "\\img\\visions\\cryo.png",
+        "Arconte": "Tsaritsa",
+        "Region": "Snezhnaya"
+    },
+    {
+        "Name": "Dendro",
+        "Color" : "#A5C83B",
+        "Icon": "\\img\\visions\\dendro.png",
+        "Arconte": "Kusanali",
+        "Region": "Sumeru"
+    },
+    {
+        "Name": "Electro",
+        "Color" : "#AF8EC1",
+        "Icon": "\\img\\visions\\electro.png",
+        "Arconte": "Beelzebul",
+        "Region": "Inazuma"
+    },
+    {
+        "Name": "Geo",
+        "Color" : "#FAB632",
+        "Icon": "\\img\\visions\\geo.png",
+        "Arconte": "Morax",
+        "Region": "Liyue"
+    },
+    {
+        "Name": "Hydro",
+        "Color" : "#4CC2F1",
+        "Icon": "\\img\\visions\\hydro.png",
+        "Arconte": "Focalors",
+        "Region": "Fontaine"
+    },
+    {
+        "Name": "Pyro",
+        "Color" : "#EF7938",
+        "Icon": "\\img\\visions\\pyro.png",
+        "Arconte": "Murata",
+        "Region": "Natlan"
+    }
+]

@@ -1,0 +1,75 @@
+﻿@model IndexDto
+@inject GenshinImpact.Services.GenshinService _service
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section class="pt-2 pb-3 text-center container">
+    <div class="row">
+        <div class="col mx-auto">
+            <h1 class="text-white">Personagens</h1>
+            <div class="group">
+                <div class="row pt-5 pb-1 justify-content-center">
+                    <div id="btn-all" class="col-1 d-flex flex-column cursor-pointer" onclick="filter('all', '#f8f9fa')">
+                        <img src="/img/visions/protogema.png">
+                        <b class="btn mt-1 text-white btn-secondary">Todos</b>
+                    </div>
+                    @foreach (var vision in Model.Visions)
+                    {
+                        <div class="col-1 d-flex flex-column cursor-pointer" onclick="filter('@vision.Name.ToLower()', '@vision.Color')">
+                            <img src="@vision.Icon">
+                            <b class="btn mt-1 text-white" style="background-color:@vision.Color">@vision.Name</b>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="album py-5" style="background-color: #f8f9fa;">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xxl-5 g-3">
+            <!-- Card - Inicio -->
+            @foreach (var character in Model.Characters)
+            {
+                <div class="col">
+                    <div class="card shadow-sm cursor-pointer @character.Vision.ToLower()"
+                        onclick="GetInfo('@character.Name')">
+                        <div id="card-img" class="d-flex w100 justify-content-center card-img-top">
+                            <img src="@character.CardPicture" height="400" width="100%" alt="@character.Name" />
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title text-center">@character.Name</h3>
+                            <p class="text-center">
+                                <img src="@string.Concat("/img/", character.Quality, ".png")"
+                                    width="@(character.Quality == 5 ? "100px" : "75px")">
+                                <img src="@string.Concat("/img/visions/element_", character.Vision.ToLower(), ".svg")" class="mx-1" width="40px">
+                            </p>
+                            <p class="card-text mb-0">@character.Region
+                                <span class="float-end">@character.Weapon</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div id="zeroChar" class="col-12 flex-column text-center justify-content-center">
+            <h1 class="text-white">Nenhum Personagem Encontrado</h1>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/site.js"></script>
+    
+    <script>
+        let toFilter = '@Html.Raw(ViewData["Filter"])';
+        
+        filter(toFilter);
+        
+        function GetInfo(name) {
+            window.location = '@Url.Action("Details", "Home")' + '?Name=' + name;
+        }
+    </script>
+}
