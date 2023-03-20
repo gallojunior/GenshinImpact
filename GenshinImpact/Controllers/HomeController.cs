@@ -24,7 +24,7 @@ public class HomeController : Controller
 
     public IActionResult Details(string Name)
     {
-        return View(_service.Characters.GetCharacter(Name));
+        return View(_service.Characters.GetDetailedCharacter(Name));
     }
 
     public IActionResult Privacy()

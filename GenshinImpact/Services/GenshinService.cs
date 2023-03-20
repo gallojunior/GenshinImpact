@@ -45,4 +45,5 @@ public class GenshinService
             Visions = _visions.GetVisions()
         };
     }
+   
 }

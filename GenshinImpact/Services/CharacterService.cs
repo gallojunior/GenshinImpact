@@ -24,4 +24,17 @@ public class CharacterService : JsonFileService<Character>
     {
         return characters.FirstOrDefault(c => c.Name.Equals(Name));
     }
+
+    public DetailsDto GetDetailedCharacter(string Name)
+    {
+        var characters = GetCharacters().ToArray();
+        var index = Array.IndexOf(characters, characters.Where(p => p.Name.Equals(Name)).FirstOrDefault());
+        var character = new DetailsDto()
+        {
+            Current = characters[index],
+            Prior = characters[index - 1] ?? null,
+            Next = characters[index + 1] ?? null
+        };
+        return character;
+    }
 }
