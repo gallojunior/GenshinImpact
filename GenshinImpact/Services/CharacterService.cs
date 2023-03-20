@@ -32,8 +32,8 @@ public class CharacterService : JsonFileService<Character>
         var character = new DetailsDto()
         {
             Current = characters[index],
-            Prior = characters[index - 1] ?? null,
-            Next = characters[index + 1] ?? null
+            Prior = index - 1 < 0 ? null : characters[index - 1],
+            Next = index + 1 >= characters.Count() ? null : characters[index + 1]
         };
         return character;
     }

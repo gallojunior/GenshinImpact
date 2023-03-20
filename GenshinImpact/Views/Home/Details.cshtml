@@ -1,13 +1,29 @@
 @model DetailsDto
 @{
-    ViewData["Title"] = "@Model.Current.Name";
+    ViewData["Title"] = Model.Current.Name;
 }
 
 <div class="album py-5 bg-light">
     <div class="container">
         <div class="row">
-            <div class="col">
-                <h1 class="text-dark text-center">@Model.Current.Name</h1>
+            <div class="col text-center">
+                @if (Model.Prior != null)
+                {
+                    <a asp-action="Details" asp-route-Name="@Model.Prior.Name" class="btn btn-lg btn-outline-dark">
+                        @Model.Prior.Name
+                    </a>
+                }
+            </div>
+            <div class="col text-center">
+                <h1 class="fs-1 text-dark">@Model.Current.Name</h1>
+            </div>
+            <div class="col text-center">
+                @if (Model.Next != null)
+                {
+                    <a asp-action="Details" asp-route-Name="@Model.Next.Name" class="btn btn-lg btn-outline-dark">
+                        @Model.Next.Name
+                    </a>
+                }
             </div>
         </div>
         <div class="row mt-3">
@@ -48,9 +64,11 @@
                         <td>@Model.Current.SpecialDish</td>
                     </tr>
                     <tr>
-                        <td rowspan="@(Model.Current.Affiliations.Count == 0 ? 1 : Model.Current.Affiliations.Count)" class="fw-bold">
+                        <td rowspan="@(Model.Current.Affiliations.Count == 0 ? 1 : Model.Current.Affiliations.Count)"
+                            class="fw-bold">
                             Filiações:</td>
-                        <td class="w-100">@(Model.Current.Affiliations.Count > 0 ? Model.Current.Affiliations[0] : "Nenhuma")</td>
+                        <td class="w-100">@(Model.Current.Affiliations.Count > 0 ? Model.Current.Affiliations[0] :
+                            "Nenhuma")</td>
                     </tr>
                     @for (int i = 1; i < Model.Current.Affiliations.Count; i++)
                     {
@@ -59,7 +77,8 @@
                         </tr>
                     }
                     <tr>
-                        <td rowspan="@(Model.Current.Titles.Count == 0 ? 1 : Model.Current.Titles.Count)" class="fw-bold">Títulos:</td>
+                        <td rowspan="@(Model.Current.Titles.Count == 0 ? 1 : Model.Current.Titles.Count)"
+                            class="fw-bold">Títulos:</td>
                         <td class="w-100">@(Model.Current.Titles.Count > 0 ? Model.Current.Titles[0] : "Nenhum")</td>
                     </tr>
                     @for (int i = 1; i < Model.Current.Titles.Count; i++)
